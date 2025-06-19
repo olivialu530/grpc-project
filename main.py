@@ -40,15 +40,15 @@ def createProcesses(processes):
     # List of Branch objects
     branches = []
     # List of Branch IDs
-    branchIds = []
+    branch_ids = []
     # List of Branch processes
     branch_process = []
 # Instantiate Branch objects
     for process in processes:   
         if process["type"] == "branch":
-            branch = Branch(process["id"], process["balance"], branchIds)
+            branch = Branch(process["id"], process["balance"], branch_ids)
             branches.append(branch)
-            branchIds.append(branch.id)
+            branch_ids.append(branch.id)
 # Spawn Branch processes
     for branch in branches:
         branch_process = multiprocessing.Process(target=serve_branch,args=(branch,))

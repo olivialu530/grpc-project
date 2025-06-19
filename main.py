@@ -42,7 +42,7 @@ def createProcesses(processes):
     # List of Branch IDs
     branchIds = []
     # List of Branch processes
-    branchProcesses = []
+    branch_process = []
 # Instantiate Branch objects
     for process in processes:   
         if process["type"] == "branch":
@@ -52,7 +52,7 @@ def createProcesses(processes):
 # Spawn Branch processes
     for branch in branches:
         branch_process = multiprocessing.Process(target=serve_branch,args=(branch,))
-        branchProcesses.append(branch_process)
+        branch_process.append(branch_process)
         branch_process.start()
 # Allow branch processes to start
     sleep(0.25)
@@ -72,7 +72,7 @@ def createProcesses(processes):
 # Allow branches to complete output before terminating
     sleep(1)
 # Terminate Branch processes
-    for branchProcess in branchProcesses:
+    for branchProcess in branch_process:
         branchProcess.terminate()
 # Write events to output.json
 def outputEvents():

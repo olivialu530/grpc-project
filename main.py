@@ -36,7 +36,7 @@ def createProcesses(processes):
 # List of Customer objects
     customers = []
     # List of Customer processes
-    customerProcesses = []
+    customer_processes = []
     # List of Branch objects
     branches = []
     # List of Branch IDs
@@ -64,10 +64,10 @@ def createProcesses(processes):
 # Spawn Customer processes
     for customer in customers:
         customer_process = multiprocessing.Process(target=serveCustomer,args=(customer,))
-        customerProcesses.append(customer_process)
+        customer_processes.append(customer_process)
         customer_process.start()
 # Wait for Customer processes to complete
-    for customerProcess in customerProcesses:
+    for customerProcess in customer_processes:
         customerProcess.join()
 # Allow branches to complete output before terminating
     sleep(1)

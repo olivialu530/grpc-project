@@ -1,0 +1,17 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+service Branch {
+    rpc sendRequest(request) returns (response) {}
+    rpc propagate(request) returns (response) {}
+}
+message request {
+    int32 id = 1;
+    string action = 2;
+    int32 money = 3;
+}
+message response {
+    string action = 1;
+    string result = 2;
+    int32 money = 3;
+}
+

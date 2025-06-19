@@ -18,11 +18,12 @@ def serveBranch(branch):
     server.add_insecure_port("[::]:" + port)
     server.start()
 # Stagger writing to the output file to maintain order of pid's
+    output_path = "output.json"
     sleep(0.5 * branch.id)
-    output_array = json.load(open("output.json"))
+    output_array = json.load(open(output_path))
     output_array.append({"pid": branch.id, "data": branch.output()})
     output = json.dumps(output_array, indent=4)
-    output_file = open("output.json", "w")
+    output_file = open(output_path, "w")
     output_file.write(output)
     output_file.close()
     server.wait_for_termination()

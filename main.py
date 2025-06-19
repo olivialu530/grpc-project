@@ -9,7 +9,7 @@ import branch_pb2_grpc
 from Branch import Branch
 from Customer import Customer
 # Start branch gRPC server process
-def serveBranch(branch):
+def serve_branch(branch):
     branch.createStubs()
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     branch_pb2_grpc.add_BranchServicer_to_server(branch, server)
@@ -51,7 +51,7 @@ def createProcesses(processes):
             branchIds.append(branch.id)
 # Spawn Branch processes
     for branch in branches:
-        branch_process = multiprocessing.Process(target=serveBranch,args=(branch,))
+        branch_process = multiprocessing.Process(target=serve_branch,args=(branch,))
         branchProcesses.append(branch_process)
         branch_process.start()
 # Allow branch processes to start
